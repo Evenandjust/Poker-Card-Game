@@ -3,7 +3,7 @@
 /*******************************************************************************************************************************
  * 
  * @Written by XZZ
- * @function: Implement a card game as follows:
+ * @function: Implement a poker card game as follows:
  * 
  * ========A sample game play scenario========
  * 
@@ -17,6 +17,7 @@
  * 7. Continue? (Y/N)
  * 8. In case the game continues, use the undealt cards to play the next game. When all cards are dealt, reshuffle the whole deck.
  *
+ * @Reference: http://webcodingeasy.com/PHP-classes/Generate-shuffle-and-deal-custom-card-deck
  ********************************************************************************************************************************/
 
 // Create a new deck of cards
