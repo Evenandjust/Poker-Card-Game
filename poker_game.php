@@ -47,7 +47,7 @@ while($game_flag){
 		fwrite(STDOUT, "\nPlease enter the number of players (2-4): ");
 		$num_players = fgets(STDIN);
 		
-		if($num_players>=2&&$num_players<=4){
+		if($num_players >= 2 && $num_players <= 4){
 			printf("\nGame starts with %d players. \n", $num_players);
 			$initial_flag = false;
 		}else{
@@ -59,7 +59,7 @@ while($game_flag){
 
 	// If the remained cards in deck are less than the cards needed to be dealt in this round, then reshuffle the whole deck;
 	// else shuffle the remained cards in deck.
-	if($deck_cards_num >= 5*$num_players){
+	if($deck_cards_num >= 5 * $num_players){
 		$reset = false;
 	}else{
 		$reset = true;
@@ -151,7 +151,7 @@ while($game_flag){
 
 	    $index++;
 	    
-	    for($i = 0; $i < count($rank_value);$i++){
+	    for($i = 0; $i < count($rank_value); $i++){
 	    	echo "rank_value[" . $i . "]=" . $rank_value[$i] . "\n";
 		}
 	    
@@ -167,7 +167,7 @@ while($game_flag){
 	$win_index = array();
 
 	for($i = 0; $i < $num_players; $i++) {
-		if(determine_score($hand_arrs[$i])===$max_score){
+		if(determine_score($hand_arrs[$i]) === $max_score){
 			$win_index[] = $i + 1;
 		}
 	}
@@ -263,9 +263,9 @@ function four_of_a_kind($arr){
 
 	$rank_value = sort_by_rank_value($arr);
 
-	if($rank_value[0]===$rank_value[1]&&$rank_value[1]===$rank_value[2]&&$rank_value[2]===$rank_value[3]){
+	if($rank_value[0] === $rank_value[1] && $rank_value[1] === $rank_value[2] && $rank_value[2] === $rank_value[3]){
 		return 1;
-	}elseif ($rank_value[1]===$rank_value[2]&&$rank_value[2]===$rank_value[3]&&$rank_value[3]===$rank_value[4]) {
+	}elseif ($rank_value[1] === $rank_value[2] && $rank_value[2] === $rank_value[3] && $rank_value[3] === $rank_value[4]) {
 		return 1;
 	}else{
 		return 0;
@@ -276,9 +276,9 @@ function full_house($arr){
 
 	$rank_value = sort_by_rank_value($arr);
 
-	if($rank_value[0]===$rank_value[1]&&$rank_value[1]===$rank_value[2]&&$rank_value[2]!==$rank_value[3]&&$rank_value[3]===$rank_value[4]){
+	if($rank_value[0] === $rank_value[1] && $rank_value[1] === $rank_value[2] && $rank_value[2] !== $rank_value[3] && $rank_value[3] === $rank_value[4]){
 		return 1;
-	}elseif ($rank_value[2]===$rank_value[3]&&$rank_value[3]===$rank_value[4]&&$rank_value[0]===$rank_value[1]&&$rank_value[1]!==$rank_value[2]) {
+	}elseif ($rank_value[2] === $rank_value[3] && $rank_value[3] === $rank_value[4] && $rank_value[0] === $rank_value[1] && $rank_value[1] !== $rank_value[2]) {
 		return 1;
 	}else{
 		return 0;
@@ -298,7 +298,7 @@ function flush_kind($arr){
 	$flag = 1;
 
 	for($i = 1; $i < 5; $i++){
-		if($suit_value[$i]!==$flag_suit){
+		if($suit_value[$i] !== $flag_suit){
 			$flag = 0;
 			break;
 		}else{
@@ -314,7 +314,7 @@ function straight($arr){
 	
 	$rank_value = sort_by_rank_value($arr);
 
-	if($rank_value[4]-$rank_value[3]===1&&$rank_value[3]-$rank_value[2]===1&&$rank_value[2]-$rank_value[1]===1&&$rank_value[1]-$rank_value[0]===1){
+	if($rank_value[4] - $rank_value[3] === 1 && $rank_value[3] - $rank_value[2] === 1 && $rank_value[2] - $rank_value[1] === 1 && $rank_value[1] - $rank_value[0] === 1){
 		return 1;
 	}else{
 		return 0;
@@ -325,11 +325,11 @@ function three_of_a_kind($arr){
 
 	$rank_value = sort_by_rank_value($arr);
 
-	if($rank_value[0]===$rank_value[1]&&$rank_value[1]===$rank_value[2]&&$rank_value[2]!==$rank_value[3]&&$rank_value[3]!==$rank_value[4]){
+	if($rank_value[0] === $rank_value[1] && $rank_value[1] === $rank_value[2] && $rank_value[2] !== $rank_value[3] && $rank_value[3] !== $rank_value[4]){
 		return 1;
-	}elseif ($rank_value[1]===$rank_value[2]&&$rank_value[2]===$rank_value[3]&&$rank_value[0]!==$rank_value[1]&&$rank_value[3]!==$rank_value[4]) {
+	}elseif ($rank_value[1] === $rank_value[2] && $rank_value[2] === $rank_value[3] && $rank_value[0] !== $rank_value[1] && $rank_value[3] !== $rank_value[4]) {
 		return 1;
-	}elseif ($rank_value[2]===$rank_value[3]&&$rank_value[3]===$rank_value[4]&&$rank_value[0]!==$rank_value[1]&&$rank_value[1]!==$rank_value[2]) {
+	}elseif ($rank_value[2] === $rank_value[3] && $rank_value[3] === $rank_value[4] && $rank_value[0] !== $rank_value[1] && $rank_value[1] !== $rank_value[2]) {
 		return 1;
 	}else{
 		return 0;
@@ -341,11 +341,11 @@ function two_pair($arr){
 
 	$rank_value = sort_by_rank_value($arr);
 
-	if($rank_value[0]===$rank_value[1]&&$rank_value[2]===$rank_value[3]&&$rank_value[1]!==$rank_value[2]&&$rank_value[3]!==$rank_value[4]){
+	if($rank_value[0] === $rank_value[1] && $rank_value[2] === $rank_value[3] && $rank_value[1] !== $rank_value[2] && $rank_value[3] !== $rank_value[4]){
 		return 1;
-	}elseif ($rank_value[0]===$rank_value[1]&&$rank_value[1]!==$rank_value[2]&&$rank_value[2]!==$rank_value[3]&&$rank_value[3]===$rank_value[4]) {
+	}elseif ($rank_value[0] === $rank_value[1] && $rank_value[1] !== $rank_value[2] && $rank_value[2] !== $rank_value[3] && $rank_value[3] === $rank_value[4]) {
 		return 1;
-	}elseif ($rank_value[0]!==$rank_value[1]&&$rank_value[1]===$rank_value[2]&&$rank_value[2]!==$rank_value[3]&&$rank_value[3]===$rank_value[4]) {
+	}elseif ($rank_value[0] !== $rank_value[1] && $rank_value[1] === $rank_value[2] && $rank_value[2] !== $rank_value[3] && $rank_value[3] === $rank_value[4]) {
 		return 1;
 	}else{
 		return 0;
@@ -357,13 +357,13 @@ function one_pair($arr){
 
 	$rank_value = sort_by_rank_value($arr);
 
-	if($rank_value[0]===$rank_value[1]&&$rank_value[1]!==$rank_value[2]&&$rank_value[2]!==$rank_value[3]&&$rank_value[3]!==$rank_value[4]){
+	if($rank_value[0] === $rank_value[1] && $rank_value[1] !== $rank_value[2] && $rank_value[2] !== $rank_value[3] && $rank_value[3] !== $rank_value[4]){
 		return 1;
-	}elseif($rank_value[0]!==$rank_value[1]&&$rank_value[1]===$rank_value[2]&&$rank_value[2]!==$rank_value[3]&&$rank_value[3]!==$rank_value[4]){
+	}elseif($rank_value[0] !== $rank_value[1] && $rank_value[1] === $rank_value[2] && $rank_value[2] !== $rank_value[3] && $rank_value[3] !== $rank_value[4]){
 		return 1;
-	}elseif ($rank_value[0]!==$rank_value[1]&&$rank_value[1]!==$rank_value[2]&&$rank_value[2]===$rank_value[3]&&$rank_value[3]!==$rank_value[4]) {
+	}elseif ($rank_value[0] !== $rank_value[1] && $rank_value[1] !== $rank_value[2] && $rank_value[2] === $rank_value[3] && $rank_value[3] !== $rank_value[4]) {
 		return 1;
-	}elseif ($rank_value[0]!==$rank_value[1]&&$rank_value[1]!==$rank_value[2]&&$rank_value[2]!==$rank_value[3]&&$rank_value[3]===$rank_value[4]) {
+	}elseif ($rank_value[0] !== $rank_value[1] && $rank_value[1] !== $rank_value[2] && $rank_value[2] !== $rank_value[3] && $rank_value[3] === $rank_value[4]) {
 		return 1;
 	}else{
 		return 0;
@@ -375,7 +375,7 @@ function high_card($arr){
 
 	$rank_value = sort_by_rank_value($arr);
 
-	if($rank_value[0]!==$rank_value[1]&&$rank_value[1]!==$rank_value[2]&&$rank_value[2]!==$rank_value[3]&&$rank_value[3]!==$rank_value[4]&&(!straight($arr))&&(!flush_kind($arr))){
+	if($rank_value[0] !== $rank_value[1] && $rank_value[1] !== $rank_value[2] && $rank_value[2] !== $rank_value[3] && $rank_value[3] !== $rank_value[4] && (!straight($arr)) && (!flush_kind($arr))){
 		return 1;
 	}else{
 		return 0;
