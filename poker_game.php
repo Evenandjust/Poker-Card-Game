@@ -411,11 +411,9 @@ function sort_by_rank_value($arr){
 
 	}
 	
-		
 	sort($rank_value);
 
 	return $rank_value;
-
 }
 
 
@@ -429,7 +427,6 @@ class Deck{
 	// $id is the identification of card type;
 	// In this case, just consider one card type (2-10,J,Q,K,A), ignore another card type (Jokers).
 	public function add_card($property, $prop_names, $num = 1, $id = -1){
-		
 		$arr = array();
 
 		if($id < 0){
@@ -438,14 +435,14 @@ class Deck{
 			$index = $id;
 		}
 
-		foreach($prop_names as $key => $value)
-		{
+		foreach($prop_names as $key => $value){
 			$arr[] = $value;
 		}
-		if(!isset($this->count[$index]))
-		{
+		
+		if(!isset($this->count[$index])){
 			$this->count[$index] = 1;
 		}
+		
 		$this->count[$index] *= count($arr);
 		$this->count[$index] *= $num;
 		$this->types[$index][$property] = $arr;
@@ -456,8 +453,7 @@ class Deck{
 	// Shuffle function, shuffle the deck according to the $reset value. 
 	// $reset = true --> generate all cards; $reset = false --> shuffle cards remained in deck
 	public function shuffle($reset = true){
-		if($reset)
-		{
+		if($reset){
 			$this->deck = range(0, array_sum($this->count) - 1);
 		}
 		shuffle($this->deck);
@@ -466,35 +462,26 @@ class Deck{
 	// Deal function, in this game, $number = 1
 	public function deal($number){
 		$arr = array();
-		for($i = 1; $i <= $number; $i++)
-		{
-
+		for($i = 1; $i <= $number; $i++){
 			// If deck is not empty, then deal the cards. 
-			if(!empty($this->deck))
-			{
+			if(!empty($this->deck)){
 				$cnt = count($arr);
 				$card = array_shift($this->deck);
 				$sub = 0;
-				foreach($this->types as $card_type => $value)
-				{
-					if($card < $this->count[$card_type] + $sub)
-					{
+				
+				foreach($this->types as $card_type => $value){
+					if($card < $this->count[$card_type] + $sub){
 						$mod = 1;
-						foreach($value as $key => $val)
-						{
+						foreach($value as $key => $val){
 							$arr[$cnt][$key] = $val[round(($card - $sub)/$mod) % count($val)];
 							$mod *= count($val);
 						}
 						break;
-					}
-					else
-					{
+					}else{
 						$sub += $this->count[$card_type];
 					}
 				}
-			}
-			else
-			{
+			}else{
 				break;
 			}
 		}
